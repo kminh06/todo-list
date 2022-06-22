@@ -1,0 +1,114 @@
+#list {
+  text-align: start;
+  margin: auto;
+  width: 50%;
+  min-width: 400px;
+}
+
+div.item {
+  height: max-content;
+  margin: 10px;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+div.item:hover {
+  grid-template-columns: 1fr 35px;
+}
+
+.trash {
+  height: 37px;
+  width: 37px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  grid-column: 2/3;
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  background-color: rgb(255, 172, 172);
+  user-select: none;
+}
+
+.trash:hover {
+  background-color: rgb(255, 160, 160);
+}
+
+ol {
+  padding-inline-start: 10px;
+}
+
+li {
+  height: 25px;
+  border: 1px rgba(51, 51, 51, 0.05) solid;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  grid-column: 1/2;
+  z-index: 2;
+}
+
+.done {
+  background-color: rgb(237, 255, 237);
+  text-decoration: line-through;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+input {
+  padding: 5px 12px;
+  height: max-content;
+  font-size: 15px;
+  border: 2px rgba(51, 51, 51, 0.05) solid;
+  border-right: 0;
+  border-radius: 8px 0 0 8px;
+  height: 28px;
+  width: 20%;
+  min-width: 200px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.button {
+  background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 0 8px 8px 0;
+  border-width: 0;
+  color: #333333;
+  height: 42px;
+  width: 60px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#trash {
+  height: 25px;
+  width: 25px;
+  object-fit: fill;
+}
