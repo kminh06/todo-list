@@ -1,17 +1,20 @@
 import React from 'react';
 import Dashboard from './components/Dashboard';
-import Signup from './components/Signup';
 import Login from './components/Login';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
 
 export default function App() {
   return (
     <div className='App'>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            <Route exact path="/" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
     </div>
   )
 }

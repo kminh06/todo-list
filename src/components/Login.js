@@ -1,28 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { db, auth } from '../firebase/config';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+
+export let userInfo = {};
 
 export default function Login() {
-  const googleProvider = new GoogleAuthProvider();
+  const { currentUser, login } = useAuth();
 
-  function login(provider) {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
-        const userID = user.uid;
-        console.log(user);
-      }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-      })
-  }
+  const googleProvider = new GoogleAuthProvider();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/")
+    } else {}
+  }, [])
 
   return (
     <div className='Login'>

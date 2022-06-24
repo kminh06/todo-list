@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebase/config';
-import { doc, updateDoc, arrayUnion, arrayRemove, onSnapshot } from 'firebase/firestore';
+import { db, auth } from '../firebase/config';
+import { doc, updateDoc, arrayUnion, arrayRemove, onSnapshot, setDoc, getDoc } from 'firebase/firestore';
 import trash from '../media/trash.png'
 import '../css/TodoList.css'
+import { userInfo } from './Login'
+import { useAuth } from '../contexts/AuthContext';
 
 export default function TodoList() {
+  const { currentUser } = useAuth();
   const [todos, setTodos] = useState([]);
-  const [userID, setUserID] = useState("bXqN8MF2VwD2JeIpD1jv");
-  const docRef = doc(db, "users", userID);
   const [text, updateText] = useState('');
+  const docRef = doc(db, "users", currentUser.uid);
 
-  useEffect(() =>
-    onSnapshot(docRef, (doc) =>
-      setTodos(doc.data().todos)
-    ), []);
+  useEffect(() => {
+    getDoc(docRef)
+      .then((doc) => {
+        console.log(doc.data())
+        if (doc.data() === undefined) {
+          setDoc(docRef, {
+            todos: []
+          })
+        } else {
+          onSnapshot(docRef, (doc) =>
+            setTodos(doc.data().todos)
+          )
+        }
+      })
+  }, [])
 
   function handleChange(e) {
     updateText(e.target.value)
@@ -47,7 +60,6 @@ export default function TodoList() {
   function handleUpdate(list, index) {
     const updatedList = list;
     updatedList[index].isDone = !updatedList[index].isDone;
-    console.log(updatedList[index].isDone)
     
     updateDoc(docRef, {
       todos: updatedList
@@ -58,7 +70,7 @@ export default function TodoList() {
     if (status === true) {
       return 'done'
     } else if (status === false) {
-      return 'unfinished'
+      return
     }
   }
 
@@ -82,7 +94,7 @@ export default function TodoList() {
   }
 
   return (
-    <div className='TodoList'>
+    <>
       <div id='list'>
         <ol>
           {todolist(todos)}
@@ -92,6 +104,6 @@ export default function TodoList() {
         <input type='text' onChange={handleChange} value={text} placeholder='New item ...'></input>
         <button className='button' id='newTodo' onClick={handleSubmit}>Add</button>
       </form>
-    </div>
+    </>
   )
 }
