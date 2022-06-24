@@ -1,8 +1,8 @@
 import React from 'react';
-import Dashboard from './components/Dashboard';
-import Login from './components/Login';
+import Dashboard from './Dashboard';
+import Login from './Login';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider } from '../contexts/AuthContext';
 
 export default function App() {
   return (

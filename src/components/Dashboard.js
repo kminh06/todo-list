@@ -21,6 +21,7 @@ export default function Dashboard() {
 
   async function handleLogout() {
     try {
+      alert("Are you sure you want to log out?")
       await logout();
       navigate("/login")
     } catch (error) {

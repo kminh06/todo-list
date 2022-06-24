@@ -4,6 +4,7 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
+import '../css/Login.css'
 
 export let userInfo = {};
 
@@ -21,6 +22,7 @@ export default function Login() {
 
   return (
     <div className='Login'>
+      <h1>Log In</h1>
       <button onClick={(e) => {
         e.preventDefault();
         login(googleProvider)
