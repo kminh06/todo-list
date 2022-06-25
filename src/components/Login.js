@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { db, auth } from '../firebase/config';
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
 import '../css/Login.css'
-
-export let userInfo = {};
+import Fb from '../media/path14.png'
 
 export default function Login() {
   const { currentUser, login } = useAuth();
-
   const googleProvider = new GoogleAuthProvider();
+  const fbProvider = new FacebookAuthProvider();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser) {
-      navigate("/")
+      navigate("/dashboard")
     } else {}
   }, [])
 
   return (
     <div className='Login'>
       <h1>Log In</h1>
-      <button onClick={(e) => {
+      <button className='loginBtn google' onClick={(e) => {
         e.preventDefault();
         login(googleProvider)
-      }}>Login with Google</button>
+      }}>{<img src='https://img.icons8.com/color/100/000000/google-logo.png'></img>}<span>Login with Google</span></button>
+      <button className='loginBtn facebook' onClick={(e) => {
+        e.preventDefault();
+        login(fbProvider)
+      }}>{<img src={Fb}></img>}<span>Login with Facebook</span></button>
     </div>
   )
 }

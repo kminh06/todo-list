@@ -4,11 +4,10 @@ import '../css/Dashboard.css'
 import { auth } from '../firebase/config';
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext';
+import Logo from '../media/favicon.png'
 
 export default function Dashboard() {
-  const [user, setUser] = useState("")
   const { currentUser, logout } = useAuth()
-  // const user = auth.currentUser;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,28 +19,32 @@ export default function Dashboard() {
   }, [])
 
   async function handleLogout() {
-    try {
-      alert("Are you sure you want to log out?")
-      await logout();
-      navigate("/login")
-    } catch (error) {
-      console.log("Failed")
-    }
+    let result = window.confirm("Are you sure you want to log out?");
+    if (result) {
+      try {
+        await logout();
+        navigate("/login")
+      } catch (error) {
+        console.log("Failed")
+      }
+    } else {}
   }
-
-  console.log(currentUser)
 
   return (
     (currentUser) ? <div className='Dashboard'>
-      <div className='header'>
-        <h1>Welcome {currentUser.displayName}</h1>
-        <img src={currentUser.photoURL}></img>
-        <button onClick={(e) => {
+      <div id='header'>
+        <span className='left-col'>
+          <img src={Logo} id='logo' />
+          <h2>Todos</h2>
+        </span>
+        <img src={currentUser.photoURL} className='avatar' />
+        <button className='btn' onClick={(e) => {
           e.preventDefault();
           handleLogout();
         }}>Log Out</button>
       </div>
       <div className='TodoList'>
+        <h2 className='title'>{currentUser.displayName}'s Todo List:</h2>
         <TodoList />
       </div>
     </div> : navigate("/login")

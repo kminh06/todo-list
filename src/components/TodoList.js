@@ -15,7 +15,6 @@ export default function TodoList() {
   useEffect(() => {
     getDoc(docRef)
       .then((doc) => {
-        console.log(doc.data())
         if (doc.data() === undefined) {
           setDoc(docRef, {
             todos: []
