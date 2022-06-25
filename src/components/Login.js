@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import '../css/Login.css'
 import Fb from '../media/path14.png'
+import Logo from '../media/favicon.png'
 
 export default function Login() {
   const { currentUser, login } = useAuth();
@@ -19,6 +20,12 @@ export default function Login() {
 
   return (
     <div className='Login'>
+      <div id='header'>
+        <span className='left-col'>
+          <img src={Logo} id='logo' />
+          <span>Todos</span>
+        </span>
+      </div>
       <h1 id='title'>Log In</h1>
       <button className='loginBtn google' onClick={(e) => {
         e.preventDefault();
