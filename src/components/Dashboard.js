@@ -35,7 +35,7 @@ export default function Dashboard() {
       <div id='header'>
         <span className='left-col'>
           <img src={Logo} id='logo' />
-          <h2>Todos</h2>
+          <span>Todos</span>
         </span>
         <img src={currentUser.photoURL} className='avatar' />
         <button className='btn' onClick={(e) => {

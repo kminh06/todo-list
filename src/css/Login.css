@@ -3,6 +3,10 @@
   user-select: none;
 }
 
+.Login > h1 {
+  color: #e7e7e7;
+}
+
 .loginBtn {
   width: 250px;
   height: 50px;

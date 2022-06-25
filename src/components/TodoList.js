@@ -86,7 +86,7 @@ export default function TodoList() {
           <div className='trash' onClick={(e) => {
             e.preventDefault();
             handleDelete(list, list.indexOf(item));
-          }}><img id='trash' src={trash} alt='trash can'></img></div>
+          }}><img id='trash' src='https://img.icons8.com/color/320/000000/close-window.png' alt='trash can'></img></div>
         </div>)
       )
     }

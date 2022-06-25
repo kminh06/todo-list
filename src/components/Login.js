@@ -19,7 +19,7 @@ export default function Login() {
 
   return (
     <div className='Login'>
-      <h1>Log In</h1>
+      <h1 id='title'>Log In</h1>
       <button className='loginBtn google' onClick={(e) => {
         e.preventDefault();
         login(googleProvider)

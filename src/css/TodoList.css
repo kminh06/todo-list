@@ -15,30 +15,26 @@ div.item {
   grid-gap: 10px;
   box-sizing: border-box;
   position: relative;
+  color: #eeeeee;
 }
 
 div.item:hover {
-  grid-template-columns: 1fr 35px;
+  grid-template-columns: 1fr 30px;
 }
 
 .trash {
-  height: 37px;
-  width: 37px;
-  border-radius: 5px;
+  height: 30px;
+  width: 30px;
+  border-radius: 12px;
+  border: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   grid-column: 2/3;
   z-index: 1;
-  position: absolute;
-  right: 0;
-  background-color: rgb(255, 172, 172);
+  background-color: transparent;
   user-select: none;
-}
-
-.trash:hover {
-  background-color: rgb(255, 160, 160);
 }
 
 ol {
@@ -46,19 +42,29 @@ ol {
 }
 
 li {
-  height: 25px;
-  border: 1px rgba(51, 51, 51, 0.05) solid;
+  height: 27px;
+  line-height: 27px;
+  border: 0;
   padding: 5px 12px;
-  border-radius: 5px;
+  border-radius: 12px;
   cursor: pointer;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.05);
   grid-column: 1/2;
   z-index: 2;
+  transition: all ease .1s;
+}
+
+li:hover {
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .done {
-  background-color: rgb(225, 255, 236);
+  background-color: rgba(157, 255, 193, 0.25);
   text-decoration: line-through;
+}
+
+.done:hover {
+  background-color: rgba(153, 255, 191, 0.3) !important;
 }
 
 form {
@@ -72,12 +78,14 @@ input {
   padding: 5px 12px;
   height: max-content;
   font-size: 15px;
-  border: 2px rgba(51, 51, 51, 0.05) solid;
+  border: 0;
   border-right: 0;
-  border-radius: 8px 0 0 8px;
-  height: 28px;
+  border-radius: 12px 0 0 12px;
+  height: 32px;
   width: 20%;
   min-width: 200px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e7e7e7;
 }
 
 input:focus {
@@ -85,10 +93,10 @@ input:focus {
 }
 
 .button {
-  background-color: rgba(51, 51, 51, 0.05);
-  border-radius: 0 8px 8px 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0 12px 12px 0;
   border-width: 0;
-  color: #333333;
+  color: #e7e7e7;
   height: 42px;
   width: 60px;
   cursor: pointer;
@@ -105,10 +113,12 @@ input:focus {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  font-size: 15px;
 }
 
 #trash {
-  height: 25px;
-  width: 25px;
-  object-fit: fill;
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+  border-radius: 15px;
 }
