@@ -7,4 +7,4 @@ By building this project, I've:
 - Learned and implemented Firebase (authentication, firestore)
 - Honed and further my skills in programming web applications
 
-At the end of the project, I've successfully created my first fullstack web application.
+At the end of the project, I've successfully created my first SPA.
